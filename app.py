@@ -42,14 +42,15 @@ def send_message(token, channel):
         resp = client.chat_postMessage(channel=channel, text=get_data())
     except errors.SlackApiError as e:
         print(repr(e))
+        raise e
 
 
 if __name__ == "__main__":
     token=os.environ['SLACK_API_TOKEN']
     channel=os.environ['SLACK_LUNCH_CHANNEL']
     if not token:
-        print("environment variable 'SLACK_API_TOKEN' is not set")
+        raise ValueError("environment variable 'SLACK_API_TOKEN' is not set")
     elif not channel:
-        print("environment variable 'SLACK_LUNCH_CHANNEL' is not set")
+        raise ValueError("environment variable 'SLACK_LUNCH_CHANNEL' is not set")
     else:
         send_message(token, channel)
