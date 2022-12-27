@@ -5,7 +5,7 @@ name: Python application
 
 on:
   schedule:
-    - cron: '0 0 2 ? * 1-5 *'
+    - cron: '0 2 * * 1-5'
     
 permissions:
   contents: read
@@ -26,5 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Send message
+      env:
+        SLACK_LUNCH_CHANNEL : ${{ secrets.SLACK_LUNCH_CHANNEL }}
+        SLACK_API_TOKEN : ${{ secrets.SLACK_API_TOKEN }}
       run: |
         python3 app.py
