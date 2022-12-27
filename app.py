@@ -47,4 +47,9 @@ def send_message(token, channel):
 if __name__ == "__main__":
     token=os.environ['SLACK_API_TOKEN']
     channel=os.environ['SLACK_LUNCH_CHANNEL']
-    send_message(token, channel)
+    if not token:
+        print("environment variable 'SLACK_API_TOKEN' is not set")
+    elif not channel:
+        print("environment variable 'SLACK_LUNCH_CHANNEL' is not set")
+    else:
+        send_message(token, channel)
