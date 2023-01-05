@@ -8,7 +8,7 @@ from slack_sdk import WebClient, errors
 
 
 def url(name, y, m, d):
-    return f"https://www.kaist.ac.kr/kr/html/campus/053001.html?dvs_cd={name}&stt_dt={y}-{m}-{d}"
+    return f"https://www.kaist.ac.kr/kr/html/campus/053001.html?dvs_cd={name}&stt_dt={y}-{m:0>2}-{d:0>2}"
 
 
 def get_data():
